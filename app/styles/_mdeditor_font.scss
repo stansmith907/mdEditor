@@ -22,5 +22,13 @@
 }
 
 .icon-mdeditor::before {
-  content: '';
+  content: '\e804';
+}
+
+.icon-mdeditor {
+  color: $brand-primary;
+}
+
+.navbar-inverse .icon-mdeditor:hover {
+  color: $gray-base;
 }

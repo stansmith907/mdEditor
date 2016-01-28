@@ -1,0 +1,79 @@
+#menu-toggle {
+  margin-right: 1em;
+  color: #fff;
+  background-color: #000;
+}
+#menu-toggle:hover {
+  background-color: #222;
+}
+
+#nav-stacked {
+  position: fixed;
+}
+#nav-stacked li > a:focus {
+  background-color: inherit;
+}
+
+#nav-stacked li.active > a {
+  background-color: #337ab7;
+}
+
+#nav-stacked li > a > span {
+  display: block;
+  padding: 10px 15px;
+}
+
+#nav-stacked li > a.no-padding {
+  padding: 0;
+}
+#md-navbars .navbar {
+  border-radius: 0;
+}
+#md-navbar-main {
+  margin-bottom: 1px;
+}
+#md-navbar-main .navbar-form {
+  margin: 0;
+  padding: 11px;
+}
+#md-navbar-main .navbar-form .form-control {
+  height: 28px;
+  font-size: 13px;
+  padding: 4px;
+}
+#md-navbar-secondary {
+  background-color: #F0F8FF;
+  max-height: 40px;
+  /*overflow: hidden;*/
+}
+.navbar form label {
+  font-weight: 500;
+  margin-right: 7px;
+  float: none;
+  padding-top: 0 !important;
+  margin-top: 0;
+}
+#md-navbars {
+  position: fixed;
+  top: 0;
+  border-top: 1px solid #fff;
+  z-index: 100;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.navbar .divider-vertical {
+  height: 50px;
+  margin: 0;
+  border-right: 1px solid #ffffff;
+  border-left: 1px solid #f2f2f2;
+}
+
+.navbar-inverse .divider-vertical {
+  border-right-color: #444;
+  border-left-color: #222;
+}
+
+.navbar-brand {
+  padding-right: 0;
+}
