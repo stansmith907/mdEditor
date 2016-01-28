@@ -6,7 +6,8 @@ module.exports = function (defaults) {
     // Add options here
     sassOptions: {
       includePaths: [
-        'bower_components/bootstrap-sass/assets/stylesheets'
+        'bower_components/bootstrap-sass/assets/stylesheets',
+        'bower_components/bootstrap-select/sass'
       ]
     }
   });
@@ -29,6 +30,14 @@ module.exports = function (defaults) {
     '/bootstrap-sass/assets/javascripts/bootstrap/transition.js');
   app.import(app.bowerDirectory +
     '/bootstrap-sass/assets/javascripts/bootstrap/collapse.js');
+  app.import(app.bowerDirectory +
+    '/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js');
+  app.import(app.bowerDirectory +
+    '/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js');
+
+  //bootstrap-select
+  app.import(app.bowerDirectory +
+    '/bootstrap-select/js/bootstrap-select.js');
 
   return app.toTree();
 };
