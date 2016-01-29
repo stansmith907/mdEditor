@@ -14,6 +14,7 @@ section#md-help {
   top: 0;
   width: 275px;
   display: none;
+  z-index: 3;
 
   .page-header {
     border-bottom-color: $gray-light;
