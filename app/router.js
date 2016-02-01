@@ -5,63 +5,47 @@ var Router = Ember.Router.extend({
   location: config.locationType
 });
 
-Router.map(function() {
+Router.map(function () {
   this.route('dashboard');
-  this.route('save');
+  this.route('export');
   this.route('import');
   this.route('translate');
   this.route('publish');
   this.route('help');
   //records
   this.route('records');
-  this.route('records.new', {
-    path: 'records/new'
-  });
-  this.route('show', {
-    path: 'records/:record_id'
-  });
+  //record
+  this.route('record', function () {
+    this.route('new');
+    this.route('show', {
+        path: ':record_id'
+      },
+      function () {
+        this.route('edit', function () {
+          this.route('keywords');
 
-  this.route('edit', {
-    path: 'records/:record_id/edit'
-  }, function() {
-    this.route('keywords', {
-      path: 'records/:record_id/keywords'
-    });
+          this.route('spatial');
 
-    this.route('spatial', {
-      path: 'records/:record_id/spatial'
-    });
+          this.route('quality');
 
-    this.route('quality', {
-      path: 'records/:record_id/quality'
-    });
+          this.route('distribution');
 
-    this.route('distribution', {
-      path: 'records/:record_id/distribution'
-    });
+          this.route('associated');
 
-    this.route('associated', {
-      path: 'records/:record_id/associated'
-    });
+          this.route('documents');
 
-    this.route('documents', {
-      path: 'records/:record_id/documents'
-    });
+          this.route('dictionaries');
 
-    this.route('dictionaries', {
-      path: 'records/:record_id/dictionaries'
-    });
+          this.route('coverages');
 
-    this.route('coverages', {
-      path: 'records/:record_id/coverages'
-    });
-
-    this.route('grid', {
-      path: 'records/:record_id/grid'
-    });
+          this.route('grid');
+          this.route('main');
+        });
+      }
+    );
   });
   //contacts
-  this.route('contacts', function() {
+  this.route('contacts', function () {
     this.route('new');
 
     this.route('show', {
@@ -73,7 +57,7 @@ Router.map(function() {
     });
   });
   //dictionaries
-  this.route('dictionaries', function() {
+  this.route('dictionaries', function () {
     this.route('new');
 
     this.route('show', {
@@ -92,6 +76,7 @@ Router.map(function() {
       path: 'dictionaries/:dictionary_id/entities'
     });
   });
+  this.route('settings');
 });
 
 export default Router;
