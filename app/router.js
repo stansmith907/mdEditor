@@ -45,16 +45,20 @@ Router.map(function () {
     );
   });
   //contacts
-  this.route('contacts', function () {
+  this.route('contacts');
+  //contact
+  this.route('contact', function () {
     this.route('new');
 
     this.route('show', {
-      path: 'contacts/:contact_id/show'
+      path: ':contact_id'
+    }, function () {
+      this.route('edit', {
+        path: 'edit'
+      });
+
     });
 
-    this.route('edit', {
-      path: 'contacts/:contact_id/edit'
-    });
   });
   //dictionaries
   this.route('dictionaries', function () {

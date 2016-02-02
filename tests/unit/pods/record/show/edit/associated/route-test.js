@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:records/associated', 'Unit | Route | records/associated', {
+moduleFor('route:record/show/edit/associated', 'Unit | Route | records/associated', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
