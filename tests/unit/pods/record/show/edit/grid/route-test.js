@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:record/show/edit/grid', 'Unit | Route | records/grid', {
+moduleFor('route:record/show/edit/grid', 'Unit | Route | record/edit/grid', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

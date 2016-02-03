@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:record/show/edit/quality', 'Unit | Route | records/quality', {
+moduleFor('route:record/show/edit/quality', 'Unit | Route | record/edit/quality', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
