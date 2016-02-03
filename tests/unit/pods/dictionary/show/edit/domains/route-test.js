@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:dictionaries/edit', 'Unit | Route | dictionaries/edit', {
+moduleFor('route:dictionary/show/edit/domains', 'Unit | Route | dictionary/edit/domains', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

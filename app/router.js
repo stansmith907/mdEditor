@@ -12,6 +12,8 @@ Router.map(function () {
   this.route('translate');
   this.route('publish');
   this.route('help');
+  this.route('settings');
+  
   //records
   this.route('records');
   //record
@@ -23,21 +25,13 @@ Router.map(function () {
       function () {
         this.route('edit', function () {
           this.route('keywords');
-
           this.route('spatial');
-
           this.route('quality');
-
           this.route('distribution');
-
           this.route('associated');
-
           this.route('documents');
-
           this.route('dictionaries');
-
           this.route('coverages');
-
           this.route('grid');
           this.route('main');
         });
@@ -60,27 +54,21 @@ Router.map(function () {
     });
 
   });
-  //dictionaries
-  this.route('dictionaries', function () {
+  //dictionary
+  this.route('dictionaries');
+  //dictionary
+  this.route('dictionary', function () {
     this.route('new');
-
     this.route('show', {
-      path: 'dictionaries/:dictionary_id/show'
-    });
-
-    this.route('edit', {
-      path: 'dictionaries/:dictionary_id/edit'
-    });
-
-    this.route('domains', {
-      path: 'dictionaries/:dictionary_id/domains'
-    });
-
-    this.route('entities', {
-      path: 'dictionaries/:dictionary_id/entities'
+      path: ':dictionary_id'
+    }, function () {
+      this.route('edit', function () {
+        this.route('domains');
+        this.route('entities');
+      });
     });
   });
-  this.route('settings');
+
 });
 
 export default Router;
