@@ -33,7 +33,6 @@ Router.map(function () {
           this.route('dictionaries');
           this.route('coverages');
           this.route('grid');
-          this.route('main');
         });
       }
     );
