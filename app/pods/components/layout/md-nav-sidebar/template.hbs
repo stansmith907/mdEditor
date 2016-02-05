@@ -6,52 +6,34 @@
   <li id="md-sidebar-lists">
     <div class="panel-group">
       <div class="panel">
-        <div class="panel-heading clearfix" id="549-list-heading">
+        <div class="panel-heading clearfix" id="{{items.recordsId}}-heading">
           <div class="btn-group btn-group-xs pull-right" role="group" aria-label="...">
             {{#link-to "record.new" class="btn btn-primary btn-xs" }}
               <span class="fa fa-plus"></span> {{/link-to}}
             {{#link-to "records" class="btn btn-primary btn-xs" }}
               <span class="fa fa-list"></span> {{/link-to}}
           </div>
-          <h4 class="panel-title bg-primary"><a class="" data-toggle="collapse" aria-expanded="true" href="#549-list" aria-controls="549-list"><span class="fa"></span> Metadata Records (3)</a></h4>
+          <h4 class="panel-title bg-primary">
+            <a class="" data-toggle="collapse" aria-expanded="true"
+              href="#{{items.recordsId}}" aria-controls="{{items.recordsId}}">
+              <span class="fa"></span> Metadata Records ({{items.records.length}})
+            </a>
+          </h4>
         </div>
-        <div class="panel-collapse collapse in" role="tabpanel" aria-expanded="true" id="549-list" aria-labelledby="549-list-heading">
-          <div class="list-group">
-            <div class="list-group-item" draggable="true">
-              <div class="btn-group btn-group-xs pull-right" role="group" aria-label="...">
-                <a href="/record/290259a8-8583-4a08-a660-e2ad1ed35c82/edit" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+        <div class="panel-collapse collapse in" role="tabpanel" aria-expanded="true" id="{{items.recordsId}}" aria-labelledby="{{items.recordsId}}-heading">
+          {{#each items.records as |record|}}
+            <div class="list-group">
+              <div class="list-group-item" draggable="true">
+                <div class="btn-group btn-group-xs pull-right" role="group" aria-label="Navigation Buttons">
+                  {{#link-to "record.show.edit" record class="btn btn-warning" }}
+                    <span class="fa fa-pencil"></span>
+                  {{/link-to}}
+                </div>
+                <!--<span class="{{if draggable 'fa fa-ellipsis-v pull-right'}}"></span> -->
+                <a class="sidebar-row"><span class="fa fa-wrench"></span> My Project </a>
               </div>
-              <!--<span class="{{if draggable 'fa fa-ellipsis-v pull-right'}}"></span> -->
-              <a class="sidebar-row"><span class="fa fa-wrench"></span> My Project </a>
             </div>
-            <div class="list-group-item" draggable="true">
-              <div class="btn-group btn-group-xs pull-right" role="group" aria-label="...">
-                <a href="/record/22b7ba3e-7c5b-4175-b90b-80eee95328f6/edit" class="btn btn-warning
-
-                                "><span class="fa fa-pencil"></span></a>
-              </div>
-              <!--<span class="{{if draggable 'fa fa-ellipsis-v pull-right'}}"></span> -->
-              <a class="sidebar-row"><span class="fa fa-table"></span> Some Data Table </a>
-            </div>
-            <div class="list-group-item" draggable="true">
-              <div class="btn-group btn-group-xs pull-right" role="group" aria-label="...">
-                <a href="/record/4c790110-299e-46d1-9ca5-13678a6e1a15/edit" class="btn btn-warning
-
-                                "><span class="fa fa-pencil"></span></a>
-              </div>
-              <!--<span class="{{if draggable 'fa fa-ellipsis-v pull-right'}}"></span> -->
-              <a class="sidebar-row"><span class="fa fa-map-marker"></span> Borehole Project </a>
-            </div>
-            <div class="list-group-item" draggable="true">
-              <div class="btn-group btn-group-xs pull-right" role="group" aria-label="...">
-                <a href="/record/4c790110-299e-46d1-9ca5-13678a6e1a15/edit" class="btn btn-warning
-
-                                "><span class="fa fa-pencil"></span></a>
-              </div>
-              <!--<span class="{{if draggable 'fa fa-ellipsis-v pull-right'}}"></span> -->
-              <a class="sidebar-row"><span class="fa fa-wrench"></span> Another Project </a>
-            </div>
-          </div>
+          {{/each}}
           <!-- <div class="panel-footer">
                     <button>More</button>
                     </div> -->
@@ -59,7 +41,7 @@
       </div>
 
 
-      
+
       <div class="panel">
         <div class="panel-heading clearfix" id="500-list-heading">
           <div class="btn-group btn-group-xs pull-right" role="group" aria-label="...">

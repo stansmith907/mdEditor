@@ -13,7 +13,7 @@ Router.map(function () {
   this.route('publish');
   this.route('help');
   this.route('settings');
-  
+
   //records
   this.route('records');
   //record
@@ -46,10 +46,7 @@ Router.map(function () {
     this.route('show', {
       path: ':contact_id'
     }, function () {
-      this.route('edit', {
-        path: 'edit'
-      });
-
+      this.route('edit');
     });
 
   });
