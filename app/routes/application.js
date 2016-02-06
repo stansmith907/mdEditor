@@ -7,17 +7,36 @@ export default Ember.Route.extend({
    * @return {Ember.RSVP.hash}
    */
   model() {
-    return Ember.RSVP.hash({
-      records: this.store.findAll('record'),
-      contacts: this.store.findAll('contact'),
-      dictionaries: this.store.findAll('dictionary')
-    });
-  },
-  afterModel(model) {
-    model.recordsId = Ember.guidFor(model.records);
-    model.contactsId = Ember.guidFor(model.contacts);
-    model.dictionariesId = Ember.guidFor(model.dictionaries);
+    let promises = [this.store.findAll('record'),
+      this.store.findAll('contact'),
+      this.store.findAll('dictionary')
+    ];
 
-    return model;
+    let meta = [{
+      type: 'record',
+      list: 'records',
+      title: 'Metadata Records'
+    }, {
+      type: 'contact',
+      list: 'contacts',
+      title: 'Contacts'
+    }, {
+      type: 'dictionary',
+      list: 'dictionaries',
+      title: 'Dictionaries'
+    }];
+
+    let idx = 0;
+
+    let mapFn = function (item) {
+
+      meta[idx].listId = Ember.guidFor(item);
+      item.meta = meta[idx];
+      idx = ++idx;
+
+      return item;
+    };
+
+    return Ember.RSVP.map(promises, mapFn);
   }
 });

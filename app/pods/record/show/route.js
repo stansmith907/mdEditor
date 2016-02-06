@@ -2,9 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model(params) {
-    return Ember.Object.create({
-      id: params.record_id
-    });
+    return this.store.findRecord('record', params.record_id);
   },
   renderTemplate() {
     this.render('records.nav', {

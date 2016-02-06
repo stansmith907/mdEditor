@@ -8,7 +8,7 @@ export default DS.Model.extend({
   }),
   json: DS.attr('json', {
     defaultValue() {
-      const obj = {
+      const obj = Ember.Object.create({
         "version": {
           "name": "mdJson",
           "version": "1.0.0"
@@ -37,14 +37,20 @@ export default DS.Model.extend({
             "language": ["eng; USA"]
           }
         }
-      };
+      });
 
       return obj;
     }
   }),
 
-  title: Ember.computed('mdJson', function () {
-    return this.get('mdJson')
-      .metadata.resourceInfo.citation.title;
+  title: Ember.computed('json', function () {
+    return this.get('json.metadata.resourceInfo.citation.title');
+  }),
+  icon: Ember.computed('json.metadata.resourceInfo.resourceType', function () {
+    const type = this.get('json.metadata.resourceInfo.resourceType');
+    const list = Ember.getOwner(this)
+      .lookup('service:icon');
+
+    return list.get(type || 'default');
   })
 });
