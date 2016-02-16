@@ -1,0 +1,12 @@
+<div class="form-group">
+    {{#if label}}
+        <label>{{label}}</label>
+    {{/if}}
+    {{textarea
+    value=value
+    placeholder=placeholder
+    required=required
+    maxlength=maxlength
+    class="form-control"}}
+    {{yield}}
+</div>

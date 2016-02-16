@@ -1,2 +1,5 @@
-Showing: {{model.id}}
-{{outlet}}
+<h2>Record: {{model.json.metadata.resourceInfo.citation.title}}</h2>
+<form>
+    {{outlet}}
+    <p><button class="btn btn-danger btn-lg" type="button" {{action "delete" model}}>Delete</button></p>
+</form>

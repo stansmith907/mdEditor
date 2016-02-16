@@ -1,0 +1,33 @@
+<div class="form-group">
+    {{#input/md-object-table items=items2 header=label attributes=attributes index="@index" as |editing cancelEdit index|}}
+        Editing: {{editing.name}}
+
+        {{#validatable-form action=save}}
+            {{input/md-input-text value=editing.identifier required=true
+            placeholder="Provide identifier (required)" label="Identifier"}}
+
+            {{input/md-input-text value=editing.type
+            placeholder="Type of identifier (e.g. doi, ISBN, etc." label="Type"}}
+
+            {{input/md-input-text value=editing.namespace
+            placeholder="Namespace of identifier" label="Namespace"}}
+
+            {{input/md-input-text value=editing.version
+            placeholder="Version of identifier" label="Version"}}
+
+            {{input/md-input-textarea maxlength=500 value=editing.description
+            placeholder="Description of identifier" label="Description"}}
+
+            {{#if editing}}
+                {{input/md-object-authority model=editing propertyObjectName="authority"
+                label="Authority"}}
+            {{/if}}
+
+            <button type="button" class="btn btn-xs btn-info pull-right" {{action cancelEdit}}>
+                <span class="fa fa-check"></span> OK
+            </button>
+        {{/validatable-form}}
+
+    {{/input/md-object-table}}
+</div>
+{{yield}}

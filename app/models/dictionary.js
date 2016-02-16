@@ -7,7 +7,7 @@ export default DS.Model.extend({
       const obj = {
         "dictionaryInfo": {
           "citation": {
-            "title": "My Dictionary",
+            "title": "New Dictionary",
             "date": [{
               "date": new Date()
                 .toISOString(),

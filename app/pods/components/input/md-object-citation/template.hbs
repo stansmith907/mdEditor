@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a data-toggle="collapse" href="#{{panelId}}">{{label}}</a>
+        </h3>
+    </div>
+    <div id="{{panelId}}" class="panel-collapse collapse">
+        <div class="panel-body">
+            {{input/md-input-text value=citation.title required=true
+            placeholder="Citation title" label="Citation title"}}
+
+            {{input/md-input-text value=citation.alternateTitle required=false
+            placeholder="Alternate citation title" label="Alternate citation title"}}
+
+            {{input/md-input-text value=citation.edition
+            placeholder="Resource edition" label="Edition"}}
+
+            {{input/md-object-date-array model=citation propertyArrayName="date" label="Dates"}}
+
+            {{input/md-input-codelist-multi model=citation propertyArrayName="presentationForm"
+            mdCodeName="presentationForm" create=true tooltip=true value=citation.presentationForm
+            placeholder="Select one or more presentation forms" label="Presentation forms"}}
+
+            {{input/md-object-responsible-party-array model=citation propertyArrayName="responisbleParty"
+            label="Responsible parties"}}
+
+            {{input/md-object-online-resource-array model=citation propertyArrayName="onlineResource"
+            label="Online Resource" attributes="name, uri"}}
+
+            {{input/md-object-identifier-array model=citation propertyArrayName="identifier"
+            label="Identifiers" attributes="identifier, type"}}
+        </div>
+    </div>
+</div>

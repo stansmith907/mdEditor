@@ -4,7 +4,7 @@ import UUID from "npm:node-uuid";
 
 export default DS.Model.extend({
   json: DS.attr('json', {
-    defaultValue: function () {
+    defaultValue: function() {
       var obj = {
         "contactId": UUID.v4(),
         "organizationName": null,
@@ -19,13 +19,13 @@ export default DS.Model.extend({
     }
   }),
   title: Ember.computed('json.individualName', 'json.organizationName',
-    function () {
+    function() {
       const json = this.get('json');
 
       return json.individualName || json.organizationName;
     }),
   icon: Ember.computed('json.individualName', 'json.organizationName',
-    function () {
+    function() {
       const name = this.get('json.individualName');
 
       return name ? 'user' : 'users';

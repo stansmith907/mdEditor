@@ -1,0 +1,27 @@
+<div class="form-group">
+    {{#input/md-object-table items=items2 header=label attributes=attributes as |editing cancelEdit|}}
+        Editing: {{editing.name}}
+
+        {{#validatable-form action=save}}
+            {{input/md-input-text value=editing.name label="Name" placeholder="Online Resource Name"}}
+
+            {{input/md-input-text type="url" required=true value=editing.uri label="URI" placeholder="Online Resource URI"}}
+
+            {{input/md-input-text value=editing.protocol
+            label="Protocol" placeholder="Protocol for accessing the Online Resource"}}
+
+            {{input/md-input-textarea maxlength=500 value=editing.description label="Description"
+            placeholder="Description of the Online Resource: Less than 500 characters"}}
+
+            {{input/md-input-codelist-single value=editing.function mdCodeName="onlineFunction"
+            label="Function" placeholder="Select function of the Online Resource"
+            tooltip=true allowClear=true width="70%"}}
+
+            <button type="button" class="btn btn-xs btn-info pull-right" {{action cancelEdit}}>
+                <span class="fa fa-check"></span> OK
+            </button>
+        {{/validatable-form}}
+
+    {{/input/md-object-table}}
+    {{yield}}
+</div>

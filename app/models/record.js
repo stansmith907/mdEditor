@@ -24,7 +24,7 @@ export default DS.Model.extend({
           "resourceInfo": {
             "resourceType": null,
             "citation": {
-              "title": "My Record",
+              "title": "New Record",
               "date": [{
                 "date": new Date()
                   .toISOString(),

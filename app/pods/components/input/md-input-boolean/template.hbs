@@ -1,0 +1,16 @@
+<div class="form-group">
+    {{#if label}}
+        <label>{{label}}</label>
+    {{/if}}
+    <div class="input-group">
+        <span class="input-group-addon md-input-checkbox">
+            {{input type="checkbox"
+            checked=value}}
+        </span>
+        {{input
+        placeholder=placeholder
+        class="form-control md-input-checkbox-text"
+        disabled=true}}
+    </div>
+    {{yield}}
+</div>

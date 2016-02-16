@@ -7,7 +7,9 @@ export default Ember.Route.extend({
    * @return {Ember.Service} profile
    */
   profile: Ember.inject.service(),
-
+  breadCrumb:{
+    title: 'test'
+  },
   /**
    * The route activate hook, sets the profile to 'dictionary'.
    */
@@ -15,7 +17,7 @@ export default Ember.Route.extend({
     this.get('profile').set('active', 'dictionary');
   },
 
-  renderTemplate () {
+  renderTemplate() {
     this.render('nav-secondary', {
       into: 'application',
       outlet: 'nav-secondary'
@@ -23,5 +25,35 @@ export default Ember.Route.extend({
     this.render('dictionary.show.edit', {
       into: 'dictionary'
     });
+  },
+
+  actions: {
+    saveDictionary: function() {
+      let model = this.modelFor('dictionary.show.edit');
+      model.save().then(() => {
+        console.log('+--- update dictionary successful');
+        console.log('+--- updated dictionary ID:', model.id);
+        this.transitionTo('dictionaries');
+      }, function() {
+        console.log('+--- update dictionary failed');
+      });
+    },
+
+    cancelDictionary: function() {
+      console.log('+--- cancel dictionary edits');
+      this.transitionTo('dictionaries');
+    },
+
+    deleteDictionary: function() {
+      let model = this.modelFor('dictionary.show.edit');
+      model.destroyRecord().then(() => {
+        console.log('+--- delete dictionary successful');
+        console.log('+--- deleted dictionary ID:', model.id);
+        this.transitionTo('dictionaries');
+      }, function() {
+        console.log('+--- delete dictionary failed');
+      });
+    }
   }
+
 });

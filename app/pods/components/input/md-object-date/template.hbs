@@ -1,0 +1,21 @@
+<div class="form-group">
+    {{#if label}}
+        <label>{{label}}</label>
+    {{/if}}
+    <div class="row">
+        <div class="col-md-3">
+            {{input/md-input-codelist-single
+            value=dateObj2.dateType
+            tooltip=true
+            mdCodeName="dateType"
+            placeholder="Select date type"}}
+        </div>
+        <div class="col-md-3">
+            {{input/md-input-datetime
+            date=dateObj2.date
+            format="YYYY-MM-DD"
+            placeholder="Enter date"}}
+        </div>
+    </div>
+    {{yield}}
+</div>

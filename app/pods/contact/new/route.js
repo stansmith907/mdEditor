@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model: function () {
+  model: function() {
     return this.store.createRecord('contact');
   },
-  deactivate: function () {
+  deactivate: function() {
     // We grab the model loaded in this route
     var model = this.modelFor('contact/new');
 
