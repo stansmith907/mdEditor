@@ -1,21 +1,23 @@
-<h2>Dictionary: {{model.json.dictionaryInfo.citation.title}}</h2>
-<form>
-    {{input/md-input-textarea value=model.json.dictionaryInfo.description
-    placeholder="Description of dictionary resource" label="Description"}}
+<div class="container-fluid box-shadow--8dp">
+    <h2>Dictionary: {{model.json.dictionaryInfo.citation.title}}</h2>
+    <form>
+        {{input/md-input-textarea value=model.json.dictionaryInfo.description
+        placeholder="Description of dictionary resource" label="Description"}}
 
-    {{input/md-input-text value=model.json.dictionaryInfo.language
-    placeholder="Language of dictionary" label="Language"}}
+        {{input/md-input-text value=model.json.dictionaryInfo.language
+        placeholder="Language of dictionary" label="Language"}}
 
-    {{input/md-input-boolean value=model.json.dictionaryInfo.includedWithDataset
-    placeholder="Is the dictionary included with the data resource?" label="Included with data"}}
+        {{input/md-input-boolean value=model.json.dictionaryInfo.includedWithDataset
+        placeholder="Is the dictionary included with the data resource?" label="Included with data"}}
 
-    {{input/md-object-citation model=model.json.dictionaryInfo
-    propertyObjectName="citation" label="Citation"}}
+        {{input/md-object-citation model=model.json.dictionaryInfo
+        propertyObjectName="citation" label="Citation"}}
 
-    <button type="button" {{action "saveDictionary"}} class="btn btn-success">Submit</button>
-    <button type="button" {{action "cancelDictionary"}} class="btn btn-warning">Cancel</button>
-    {{#unless model.json.isNew}}
-        <button type="button" {{action "deleteDictionary" model}} class="btn btn-danger">Delete!</button>
-    {{/unless}}
-</form>
-<br>
+        <button type="button" {{action "saveDictionary"}} class="btn btn-success">Submit</button>
+        <button type="button" {{action "cancelDictionary"}} class="btn btn-warning">Cancel</button>
+        {{#unless model.json.isNew}}
+            <button type="button" {{action "deleteDictionary" model}} class="btn btn-danger">Delete!</button>
+        {{/unless}}
+    </form>
+    <br>
+</div>
