@@ -40,19 +40,20 @@ export default Ember.Route.extend({
     },
 
     cancelDictionary: function() {
-      console.log('+--- cancel dictionary edits');
       this.transitionTo('dictionaries');
     },
 
     deleteDictionary: function() {
-      let model = this.modelFor('dictionary.show.edit');
-      model.destroyRecord().then(() => {
-        console.log('+--- delete dictionary successful');
-        console.log('+--- deleted dictionary ID:', model.id);
-        this.transitionTo('dictionaries');
-      }, function() {
-        console.log('+--- delete dictionary failed');
-      });
+      if (window.confirm("Do you really want to delete this data dictionary?")) {
+        let model = this.modelFor('dictionary.show.edit');
+        model.destroyRecord().then(() => {
+          console.log('+--- delete dictionary successful');
+          console.log('+--- deleted dictionary ID:', model.id);
+          this.transitionTo('dictionaries');
+        }, function() {
+          console.log('+--- delete dictionary failed');
+        });
+      }
     }
   }
 

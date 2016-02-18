@@ -1,7 +1,8 @@
 <div class="row text-center">
     <div class="col-md-8 col-md-offset-2">
         <h3>Create New Contact</h3>
-        <p class="text-center">To create a <em> new</em> contact record, enter a contact ID and a individual name, organization name, or both.</p>
+        <p class="text-center">To create a <em> new</em> contact, enter a contact ID and an
+            individual name, organization name, or both.</p>
     </div>
 </div>
 <div class="row">
@@ -9,9 +10,14 @@
         <form class="form-horizontal">
             <div class="form-group">
                 <div class="col-sm-12">
-                    {{#if notValid}}
+                    {{#if noId}}
                         <div class="alert alert-danger" role="alert">
                             You must provide a Contact ID for this contact.
+                        </div>
+                    {{/if}}
+                    {{#if noName}}
+                        <div class="alert alert-danger" role="alert">
+                            You must either an individual or organization name.
                         </div>
                     {{/if}}
                 </div>
@@ -21,7 +27,7 @@
                 <div class="col-sm-9">
                     {{input/md-input-text
                     value=model.json.contactId
-                    placeholder='Enter an ID for this contact'}}
+                    placeholder="Enter an ID for this contact"}}
                 </div>
             </div>
             <div class="form-group">
@@ -29,7 +35,7 @@
                 <div class="col-sm-9">
                     {{input/md-input-text
                     value=model.json.individualName
-                    placeholder='Enter a name for this person'}}
+                    placeholder="Enter a name for this person"}}
                 </div>
             </div>
             <div class="form-group">
@@ -37,7 +43,7 @@
                 <div class="col-sm-9">
                     {{input/md-input-text
                     value=model.json.organizationName
-                    placeholder='Enter a name for this organization'}}
+                    placeholder="Enter a name for this organization"}}
                 </div>
             </div>
             <div class="form-group">

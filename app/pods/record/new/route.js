@@ -21,11 +21,13 @@ export default Ember.Route.extend({
   setupController: function(controller, model) {
     // Call _super for default behavior
     this._super(controller, model);
-    controller.notTitle = Ember.computed(
+
+    // setup tests for required attributes
+    controller.noTitle = Ember.computed(
       'model.json.metadata.resourceInfo.citation.title', function() {
         return model.get('title') ? false : true;
       });
-    controller.notType = Ember.computed(
+    controller.noType = Ember.computed(
       'model.json.metadata.resourceInfo.resourceType', function() {
         return model.get('json.metadata.resourceInfo.resourceType') ? false : true;
       });
@@ -33,9 +35,9 @@ export default Ember.Route.extend({
 
   actions: {
     saveRecord() {
-      let validTitle = !this.controller.get('notTitle');
-      let validType = !this.controller.get('notType');
-      if (validTitle && validType) {
+      let haveTitle = !this.controller.get('noTitle');
+      let haveType = !this.controller.get('noType');
+      if (haveTitle && haveType) {
         this.modelFor('record.new')
           .save()
           .then((model) => {
@@ -52,4 +54,5 @@ export default Ember.Route.extend({
       return false;
     }
   }
+
 });

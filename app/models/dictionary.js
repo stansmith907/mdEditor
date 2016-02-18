@@ -14,7 +14,7 @@ export default DS.Model.extend({
               "dateType": "creation"
             }]
           },
-          "description": "Data dictionary.",
+          "description": "",
           "resourceType": null
         },
         "domain": [],
@@ -24,8 +24,10 @@ export default DS.Model.extend({
       return obj;
     }
   }),
+
   title: Ember.computed('json.dictionaryInfo.citation.title', function () {
     return this.get('json.dictionaryInfo.citation.title');
   }),
+
   icon: 'book'
 });

@@ -19,36 +19,32 @@ export default Ember.Route.extend({
 
   //some test actions
   setupController: function(controller, model) {
-    controller.actions = {
-      save() {
-        this.send('saveMe');
-      }
-    };
-
     // Call _super for default behavior
     this._super(controller, model);
-    controller.notValid = Ember.computed('model.json.contactId', function() {
-        return model.get('json.contactId') ? false : true;
-      });
+
+    // setup tests for required attributes
+    controller.noId = Ember.computed('model.json.contactId', function() {
+      return model.get('json.contactId') ? false : true;
+    });
+    controller.noName = Ember.computed('model.json.individualName',
+      'model.json.organizationName', function() {
+        let haveIndividual = model.get('json.individualName') ? true : false;
+        let haveOrganization = model.get('json.organizationName') ? true : false;
+      return !(haveIndividual || haveOrganization);
+    });
   },
 
   actions: {
-    saveMe() {
-      this.modelFor('contact.new')
-        .save()
-        .then((model) => {
-          this.transitionTo('contact.show.edit', model);
-        });
-
-      return false;
-    },
-
     saveContact() {
-      this.modelFor('contact.new')
-        .save()
-        .then((model) => {
-          this.transitionTo('contact.show.edit', model);
-        });
+      let haveId = !this.controller.get('noId');
+      let haveName = !this.controller.get('noName');
+      if (haveId && haveName) {
+        this.modelFor('contact.new')
+          .save()
+          .then((model) => {
+            this.transitionTo('contact.show.edit', model);
+          });
+      }
 
       return false;
     },

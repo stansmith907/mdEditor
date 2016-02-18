@@ -32,13 +32,16 @@ const ObjectTable = Ember.Component.extend({
         items.removeAt(index);
       }
     },
+
     addItem: function(items) {
       let itm = items.pushObject(Ember.Object.create({}));
       this.set('editing', itm);
     },
+
     editItem: function(items, index) {
       this.set('editing', items.objectAt(index));
     },
+
     cancelEdit: function() {
       this.set('editing', false);
     }
