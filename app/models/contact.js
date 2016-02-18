@@ -8,7 +8,7 @@ export default DS.Model.extend({
       var obj = {
         "contactId": UUID.v4(),
         "organizationName": null,
-        "individualName": "New Contact",
+        "individualName": null,
         "positionName": null,
         "phoneBook": [],
         "address": {},
@@ -18,12 +18,14 @@ export default DS.Model.extend({
       return obj;
     }
   }),
+
   title: Ember.computed('json.individualName', 'json.organizationName',
     function() {
       const json = this.get('json');
 
       return json.individualName || json.organizationName;
     }),
+
   icon: Ember.computed('json.individualName', 'json.organizationName',
     function() {
       const name = this.get('json.individualName');

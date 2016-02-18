@@ -4,6 +4,7 @@ export default Ember.Route.extend({
   model: function() {
     return this.store.createRecord('record');
   },
+
   deactivate: function() {
     // We grab the model loaded in this route
     let model = this.modelFor('record/new');
@@ -18,37 +19,29 @@ export default Ember.Route.extend({
 
   //some test actions
   setupController: function(controller, model) {
-    controller.actions = {
-      save() {
-        this.send('saveMe');
-      }
-    };
     // Call _super for default behavior
     this._super(controller, model);
-    controller.notValid = Ember.computed(
-        'model.json.metadata.resourceInfo.citation.title',
-        function () {
-          return model.get('title') ? false : true;
-        });
+    controller.notTitle = Ember.computed(
+      'model.json.metadata.resourceInfo.citation.title', function() {
+        return model.get('title') ? false : true;
+      });
+    controller.notType = Ember.computed(
+      'model.json.metadata.resourceInfo.resourceType', function() {
+        return model.get('json.metadata.resourceInfo.resourceType') ? false : true;
+      });
   },
 
   actions: {
-    saveMe() {
-      this.modelFor('record.new')
-          .save()
-          .then((model) => {
-            this.transitionTo('record.show.edit', model);
-          });
-
-      return false;
-    },
-
     saveRecord() {
-      this.modelFor('record.new')
+      let validTitle = !this.controller.get('notTitle');
+      let validType = !this.controller.get('notType');
+      if (validTitle && validType) {
+        this.modelFor('record.new')
           .save()
           .then((model) => {
             this.transitionTo('record.show.edit', model);
           });
+      }
 
       return false;
     },
