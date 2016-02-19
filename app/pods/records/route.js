@@ -1,10 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  /*beforeModel() {
-      this.transitionTo('records.list');
-    },*/
-
   renderTemplate() {
     this.render('records.nav', {
       into: 'application',
@@ -14,4 +10,5 @@ export default Ember.Route.extend({
       into: 'application'
     });
   }
+
 });

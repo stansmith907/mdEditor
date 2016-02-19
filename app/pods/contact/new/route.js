@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import MdObjectFunctions from '../../../mixins/md-object-functions';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(MdObjectFunctions, {
   model: function() {
     return this.store.createRecord('contact');
   },
@@ -42,6 +43,8 @@ export default Ember.Route.extend({
         this.modelFor('contact.new')
           .save()
           .then((model) => {
+            // load contact list from mixin
+            this.loadContacts();
             this.transitionTo('contact.show.edit', model);
           });
       }

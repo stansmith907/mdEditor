@@ -27,7 +27,6 @@ export default Ember.Route.extend({
     saveContact: function() {
       let model = this.modelFor('contact.show.edit');
       model.save().then(() => {
-        console.log('+--- update contact successful');
         console.log('+--- updated contact ID:', model.id);
         this.transitionTo('contacts');
       }, function () {
@@ -37,19 +36,6 @@ export default Ember.Route.extend({
 
     cancelContact: function() {
       this.transitionTo('contacts');
-    },
-
-    deleteContact: function() {
-      if (window.confirm("Do you really want to delete this contact?")) {
-        let model = this.modelFor('contact.show.edit');
-        model.destroyRecord().then(() => {
-          console.log('+--- delete contact successful');
-          console.log('+--- deleted contact ID:', model.id);
-          this.transitionTo('contacts');
-        }, function () {
-          console.log('+--- delete contact failed');
-        });
-      }
     },
 
     addOnlineResource: function() {

@@ -5,6 +5,7 @@ export function initialize(application) {
   application.register('mdLists:main', mdLists);
   application.inject('route', 'mdLists', 'mdLists:main');
   application.inject('component', 'mdLists', 'mdLists:main');
+  application.inject('mixin', 'mdLists', 'mdLists:main');
 }
 
 export default {

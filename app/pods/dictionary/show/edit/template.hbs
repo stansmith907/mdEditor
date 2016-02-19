@@ -15,9 +15,6 @@
 
         <button type="button" {{action "saveDictionary"}} class="btn btn-success">Submit</button>
         <button type="button" {{action "cancelDictionary"}} class="btn btn-warning">Cancel</button>
-        {{#unless model.json.isNew}}
-            <button type="button" {{action "deleteDictionary" model}} class="btn btn-danger">Delete!</button>
-        {{/unless}}
     </form>
     <br>
 </div>

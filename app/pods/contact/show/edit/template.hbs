@@ -97,9 +97,6 @@
 
         <button type="submit" {{action "saveContact"}} class="btn btn-success">Submit</button>
         <button {{action "cancelContact"}} class="btn btn-warning">Cancel</button>
-        {{#unless model.json.isNew}}
-            <button {{action "deleteContact" model}} class="btn btn-danger">Delete!</button>
-        {{/unless}}
     </form>
     <br>
 </div>

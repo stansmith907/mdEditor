@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import MdObjectFunctions from '../mixins/md-object-functions';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(MdObjectFunctions, {
   /**
    * Models for sidebar navigation
    *
@@ -41,28 +42,8 @@ export default Ember.Route.extend({
   },
 
   afterModel: function() {
-
-    // load contact list for routes and components
-    let contactPromise = this.get('store').findAll('contact');
-    let contacts = [];
-    contactPromise.then(function (contactArray) {
-      contactArray.forEach(function (contact) {
-        let myContact = contact.get('json');
-        let orgName = myContact['organizationName'];
-        let indName = myContact['individualName'];
-        let combinedName = "";
-        if (orgName && indName) {
-          combinedName = orgName + ": " + indName;
-        } else if (orgName) {
-          combinedName = orgName;
-        } else if (indName) {
-          combinedName = indName;
-        }
-        myContact['combinedName'] = combinedName;
-        contacts.pushObject(myContact);
-      });
-    });
-    this.mdLists.set('contactList', contacts);
+    // load contact list from mixin
+    this.loadContacts();
   }
 
 });

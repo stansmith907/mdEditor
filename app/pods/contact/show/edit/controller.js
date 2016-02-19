@@ -17,6 +17,6 @@ export default Ember.Controller.extend({
       serviceType.push(telephone['codeName']);
     });
     return serviceType;
-  }),
+  })
 
 });
