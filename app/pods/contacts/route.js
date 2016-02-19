@@ -23,8 +23,8 @@ export default Ember.Route.extend(MdObjectFunctions, {
       }
     },
 
-    editItem: function(items, index) {
-      this.set('editing', items.objectAt(index));
+    editItem: function(item) {
+      this.transitionTo('contact.show.edit', item);
     }
   }
 

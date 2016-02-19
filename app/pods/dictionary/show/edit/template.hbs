@@ -1,6 +1,10 @@
 <div class="container-fluid box-shadow--8dp">
     <h2>Dictionary: {{model.json.dictionaryInfo.citation.title}}</h2>
     <form>
+        {{input/md-input-codelist-single value=model.json.dictionaryInfo.resourceType
+        create=true tooltip=true icon=true mdCodeName="scope"
+        placeholder="Choose a type for this data resource" label="Resource type"}}
+
         {{input/md-input-textarea value=model.json.dictionaryInfo.description
         placeholder="Description of dictionary resource" label="Description"}}
 
