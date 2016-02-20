@@ -43,6 +43,10 @@ export default Ember.Service.extend({
         target: 'record.show.edit.index'
 
       }, {
+        title: 'Metadat-Info',
+        target: 'record.show.edit.metadataInfo'
+
+      }, {
         title: 'Keywords',
         target: 'record.show.edit.keywords'
 
@@ -67,10 +71,6 @@ export default Ember.Service.extend({
         target: 'record.show.edit.documents'
 
       }, {
-        title: 'Dictionaries',
-        target: 'record.show.edit.dictionaries'
-
-      }, {
         title: 'Coverage',
         target: 'record.show.edit.coverages'
 
@@ -80,6 +80,7 @@ export default Ember.Service.extend({
 
       }]
     },
+
     basic: {
       profile: null,
       secondaryNav: [{
@@ -100,6 +101,7 @@ export default Ember.Service.extend({
 
       }]
     },
+
     dictionary: {
       secondaryNav: [{
         title: 'Main',

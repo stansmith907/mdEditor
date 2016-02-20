@@ -42,26 +42,21 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    /**
-     * [delete description]
-     * @param  {[type]} model [description]
-     * @return {[type]}       [description]
-     */
-    delete(model) {
-        model.destroyRecord();
+    saveRecord: function() {
+      let model = this.modelFor('record.show.edit');
+      model.save().then(() => {
+        console.log('+--- update record successful');
+        console.log('+--- updated record ID:', model.id);
         this.transitionTo('records');
-      },
+      }, function() {
+        console.log('+--- update record failed');
+      });
+    },
 
-    /**
-     * [updateProfile description]
-     * @param  {[type]} profile [description]
-     * @return {[type]}         [description]
-     */
-    updateProfile(profile) {
-      this.get('profile')
-        .set('active', profile);
-      this.modelFor('record.show.edit')
-        .save();
+    cancelRecord: function() {
+      this.transitionTo('records');
     }
+
   }
+
 });

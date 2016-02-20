@@ -1,5 +1,30 @@
-<section class="md-section-secondary box-shadow--8dp">
-  Editing: {{model.id}} {{outlet}}
-  <p><button class="btn btn-danger btn-lg" type="button" {{action "delete" model}}>Delete</button></p>
+<div class="container-fluid box-shadow--8dp">
+    <h2>Metadata Record: {{model.json.metadata.resourceInfo.citation.title}}</h2>
+    <form>
+        {{input/md-input-codelist-single value=model.json.metadata.resourceInfo.resourceType
+        create=true tooltip=true icon=true mdCodeName="scope"
+        placeholder="Choose a type for this resource" label="Resource type"}}
+
+        {{input/md-object-citation model=model.json.metadata.resourceInfo
+        propertyObjectName="citation" label="Citation"}}
+
+        {{input/md-object-responsible-party-array model=model.json.metadata.resourceInfo
+        propertyArrayName="pointOfContact"
+        label="Points of contact"}}
+
+        {{input/md-input-textarea value=model.json.metadata.resourceInfo.abstract
+        maxLength=2500
+        placeholder="Enter or paste abstract for this resource (max 2500 characters)" label="Abstract"}}
+
+        {{input/md-input-codelist-single value=model.json.metadata.resourceInfo.status
+        create=true tooltip=true allowClear=true mdCodeName="progress"
+        placeholder="Select a status code for this resource" label="Resource status"}}
+
+        {{input/md-input-text value=model.json.metadata.resourceInfo.language
+        placeholder="Language of resource" label="Resource language"}}
+
+        <button type="submit" {{action "saveRecord"}} class="btn btn-success">Submit</button>
+        <button {{action "cancelRecord"}} class="btn btn-warning">Cancel</button>
+    </form>
     <br>
-</section>
+</div>

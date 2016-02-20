@@ -32,7 +32,8 @@ export default DS.Model.extend({
             "status": null,
             "language": ["eng; USA"]
           }
-        }
+        },
+        "dataDictionary": []
       });
 
       return obj;
