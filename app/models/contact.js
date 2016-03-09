@@ -31,5 +31,24 @@ export default DS.Model.extend({
       const name = this.get('json.individualName');
 
       return name ? 'user' : 'users';
-    })
+    }),
+
+  combinedName: Ember.computed( 'json.individualName', 'json.organizationName', function() {
+    const json = this.get('json');
+
+    let indName = json.individualName;
+    let orgName = json.organizationName;
+    let combinedName = orgName;
+
+    if (indName && orgName) {
+      return combinedName += ": " + indName;
+    }
+
+    if (indName) {
+      return combinedName = indName;
+    }
+
+    return combinedName;
+  })
+
 });

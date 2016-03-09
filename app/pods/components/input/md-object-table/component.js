@@ -26,6 +26,17 @@ const ObjectTable = Ember.Component.extend({
     this.$('table, .object-editor').toggleClass('fadeOut fadeIn');
   }),
 
+  didInsertElement: function() {
+    let panel = this.get('panelId');
+    let panelBtn = panel + '-btn';
+    $('#' + panel).on('show.bs.collapse', function() {
+      $('#' + panelBtn).removeClass('md-button-hide');
+    });
+    $('#' + panel).on('hidden.bs.collapse', function() {
+      $('#' + panelBtn).addClass('md-button-hide');
+    });
+  },
+
   actions: {
     deleteItem: function(items, index) {
       if (window.confirm("Do you really want to delete this " + this.get('header') + "?")) {
@@ -46,6 +57,7 @@ const ObjectTable = Ember.Component.extend({
       this.set('editing', false);
     }
   }
+
 });
 
 export default ObjectTable;

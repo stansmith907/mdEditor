@@ -39,11 +39,6 @@ export default Ember.Route.extend(MdObjectFunctions, {
     };
 
     return Ember.RSVP.map(promises, mapFn);
-  },
-
-  afterModel: function() {
-    // load contact list from mixin
-    this.loadContacts();
   }
 
 });

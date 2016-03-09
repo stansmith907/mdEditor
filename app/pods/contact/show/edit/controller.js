@@ -17,6 +17,26 @@ export default Ember.Controller.extend({
       serviceType.push(telephone['codeName']);
     });
     return serviceType;
-  })
+  }),
+
+  panelId: Ember.computed(function () {
+    return Ember.generateGuid(null, 'panel');
+  }),
+
+
+
+  didInsertElement: function() {
+    console.log('+-- in didInsert');
+    let panel = this.get('panelId') + 'a';
+    let panelBtn = panel + '-btn';
+    $('#' + panel).on('show.bs.collapse', function() {
+      $('#' + panelBtn).removeClass('md-button-hide');
+    });
+    $('#' + panel).on('hidden.bs.collapse', function() {
+      $('#' + panelBtn).addClass('md-button-hide');
+    });
+  }
+
+
 
 });

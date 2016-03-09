@@ -12,6 +12,17 @@ export default Ember.Component.extend({
     return Ember.generateGuid(null, 'panel');
   }),
 
+  didInsertElement: function() {
+    let panel = this.get('panelId');
+    let panelBtn = panel + '-btn';
+    $('#' + panel).on('show.bs.collapse', function() {
+      $('#' + panelBtn).removeClass('md-button-hide');
+    });
+    $('#' + panel).on('hidden.bs.collapse', function() {
+      $('#' + panelBtn).addClass('md-button-hide');
+    });
+  },
+
   actions: {
     addDate: function(model) {
       if (model[this.get('propertyArrayName')] === undefined) {

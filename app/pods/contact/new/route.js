@@ -43,8 +43,6 @@ export default Ember.Route.extend(MdObjectFunctions, {
         this.modelFor('contact.new')
           .save()
           .then((model) => {
-            // load contact list from mixin
-            this.loadContacts();
             this.transitionTo('contact.show.edit', model);
           });
       }

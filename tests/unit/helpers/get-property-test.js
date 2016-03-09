@@ -1,4 +1,4 @@
-import { getProperty } from '../../../app/helpers/get-property';
+import { getProperty } from '../../../helpers/get-property';
 import { module, test } from 'qunit';
 
 module('Unit | Helper | get property');

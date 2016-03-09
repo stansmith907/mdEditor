@@ -15,8 +15,6 @@ export default Ember.Route.extend(MdObjectFunctions, {
               "or it's deletion may cause those records to not validate.")) {
         item.destroyRecord().then(function() {
           console.log('+-- deleted contact ID:', item.id);
-          // load contact list from mixin
-          _this.loadContacts();
         }, function() {
           console.log('+--- delete contact failed');
         });

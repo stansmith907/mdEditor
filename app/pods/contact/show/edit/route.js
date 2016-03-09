@@ -5,11 +5,33 @@ export default Ember.Route.extend({
     this.render('contact.show.edit', {
       into: 'contact'
     });
+
+    console.log('+-- in didInsert', this.get('panelId'));
+    let panel = this.get('panelId') + 'a';
+    let panelBtn = panel + '-btn';
+    $('#' + panel).on('show.bs.collapse', function() {
+      $('#' + panelBtn).removeClass('md-button-hide');
+    });
+    $('#' + panel).on('hidden.bs.collapse', function() {
+      $('#' + panelBtn).addClass('md-button-hide');
+    });
   },
 
-  panelId: Ember.computed(function () {
-    return Ember.generateGuid(null, 'panel');
-  }),
+  //panelId: Ember.computed(function () {
+  //  return Ember.generateGuid(null, 'panel');
+  //}),
+  //
+  //didInsertElement: function() {
+  //  console.log('+-- in didInsert');
+  //  let panel = this.get('panelId') + 'a';
+  //  let panelBtn = panel + '-btn';
+  //  $('#' + panel).on('show.bs.collapse', function() {
+  //    $('#' + panelBtn).removeClass('md-button-hide');
+  //  });
+  //  $('#' + panel).on('hidden.bs.collapse', function() {
+  //    $('#' + panelBtn).addClass('md-button-hide');
+  //  });
+  //},
 
   actions: {
     addPhone: function(phoneBook) {

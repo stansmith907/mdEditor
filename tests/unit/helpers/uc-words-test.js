@@ -1,4 +1,4 @@
-import { ucWords } from '../../../app/helpers/uc-words';
+import { ucWords } from '../../../helpers/uc-words';
 import { module, test } from 'qunit';
 
 module('Unit | Helper | uc words');

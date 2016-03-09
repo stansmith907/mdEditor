@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import DS from 'ember-data';
 
 export default Ember.Component.extend({
   /**
@@ -62,61 +63,72 @@ export default Ember.Component.extend({
     let tooltip = this.get('tooltipPath');
     let selectedItem = this.get('value');
     let outList = [];
-    inList.forEach(function(item) {
-      let newObject = {
-        codeId: item[codeId],
-        codeName: item[codeName],
-        tooltip: item[tooltip],
-        selected: false
-      };
-      outList.pushObject(newObject);
-    });
 
-    if (selectedItem) {
-      outList.forEach(function(item){
-        item['selected'] = (item['codeId'] === selectedItem);
-      });
-    }
-    return outList;
+    return DS.PromiseArray.create({
+      promise: inList.then(function(arr) {
+        arr.forEach(function(item) {
+          let newObject = {
+            codeId: item.get(codeId),
+            codeName: item.get(codeName),
+            tooltip: null,
+            selected: false
+          };
+          if (tooltip) {
+            newObject.tooltip = item.get(tooltip);
+          }
+          outList.pushObject(newObject);
+        });
+
+        if (selectedItem) {
+          outList.forEach(function(item){
+            item['selected'] = (item['codeId'] === selectedItem);
+          });
+        }
+        return outList;
+      })
+    });
   }),
 
   // Format options for the select tag
   // Add tooltips if requested
   didInsertElement: function() {
-    let tooltip = this.get('tooltipPath');
-    let codelist = this.get('codelist');
+    this.get('codelist')
+        .then(() => {
+          function formatOption(option) {
+            let text = option['text'];
+            let tip = $(option.element).data('tooltip');
+            let $option = $(`<div> ${text}</div>`);
+            if (tip) {
+              $option = $option.append(
+                  $(
+                      `<span class="badge pull-right" data-toggle="tooltip"
+                      data-placement="right" data-container="body"
+                      title="${tip}">?</span>`
+                  )
+                      .on('mousedown', function(e) {
+                        $(e.target).tooltip('destroy');
+                        return true;
+                      })
+                      .tooltip());
+            }
 
-    function formatOption(option) {
-      let text = option['text'];
-      let $option = $(`<div> ${text}</div>`);
+            return $option;
+          }
 
-      if (tooltip) {
-        let found = codelist.findBy('codeName', option['id']);
-        let tip = found ? found.description : 'Undefined';
+          this.$(".md-input-object-single").select2({
+            placeholder: this.get('placeholder'),
+            allowClear: this.get('allowClear'),
+            templateResult: formatOption,
+            width: this.get('width'),
+            minimumResultsForSearch: 10,
+            theme: 'bootstrap'
+          });
+        });
 
-        $option = $option.append(
-            $(
-                `<span class="badge pull-right" data-toggle="tooltip"
-            data-placement="right" data-container="body"
-            title="${tip}">?</span>`
-            )
-                .on('mousedown', function(e) {
-                  $(e.target).tooltip('destroy');
-                  return true;
-                })
-                .tooltip());
-      }
-      return $option;
-    }
+  },
 
-    this.$(".md-input-object-single").select2({
-      placeholder: this.get('placeholder'),
-      allowClear: this.get('allowClear'),
-      templateResult: formatOption,
-      width: this.get('width'),
-      minimumResultsForSearch: 10,
-      theme: 'bootstrap'
-    });
+  didRender() {
+    this.$('.md-input-object-single').trigger('change.select2');
   },
 
   actions: {

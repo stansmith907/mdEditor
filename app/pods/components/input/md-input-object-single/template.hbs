@@ -4,7 +4,8 @@
         <select class="form-control md-input-object-single" {{action 'setValue' on='change'}}>
             <option></option>
             {{#each codelist as |code index|}}
-                <option value={{code.codeId}} selected={{code.selected}}>{{code.codeName}}</option>
+                <option value={{code.codeId}} selected={{code.selected}}
+                        data-tooltip={{code.tooltip}}>{{code.codeName}}</option>
             {{/each}}
             {{yield}}
         </select>
@@ -14,7 +15,8 @@
         <select class="form-control md-input-object-single" {{action 'setValue' on='change'}}>
             <option></option>
             {{#each codelist as |code index|}}
-                <option value={{code.codeId}} selected={{code.selected}}>{{code.codeName}}</option>
+                <option value={{code.codeId}} selected={{code.selected}}
+                        data-tooltip={{code.tooltip}}>{{code.codeName}}</option>
             {{/each}}
             {{yield}}
         </select>

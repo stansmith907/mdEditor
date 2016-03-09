@@ -105,15 +105,13 @@ export default Ember.Component.extend({
   // Add tooltips if requested
   didInsertElement: function() {
     let tooltip = this.get('tooltip');
-    let codelist = this.get('codelist');
 
     function formatOption(option) {
       let text = option['text'];
       let $option = $(`<div> ${text}</div>`);
 
       if (tooltip) {
-        let found = codelist.findBy('codeName', option['id']);
-        let tip = found ? found.description : 'Undefined';
+        let tip = $(option.element).data('tooltip');
 
         $option = $option.append(
             $(

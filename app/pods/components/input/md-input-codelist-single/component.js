@@ -107,6 +107,7 @@ export default Ember.Component.extend({
           codelist.pushObject(newObject);
         }
       }
+
       codelist.forEach(function(item) {
         item['selected'] = (item['codeName'] === selectedItem);
       });
@@ -119,7 +120,6 @@ export default Ember.Component.extend({
   // Add tooltips,icons if requested
   didInsertElement: function() {
     let tooltip = this.get('tooltip');
-    let codelist = this.get('codelist');
     let icon = this.get('icon');
     let icons = this.get('icons');
 
@@ -134,8 +134,7 @@ export default Ember.Component.extend({
       }
 
       if (tooltip) {
-        let found = codelist.findBy('codeName', option['id']);
-        let tip = found ? found.description : 'Undefined';
+        let tip = $(option.element).data('tooltip');
 
         $option = $option.append(
             $(
@@ -161,6 +160,10 @@ export default Ember.Component.extend({
       minimumResultsForSearch: 10,
       theme: 'bootstrap'
     });
+  },
+
+  didRender() {
+    this.$('.md-input-codelist-single').trigger('change.select2');
   },
 
   actions: {

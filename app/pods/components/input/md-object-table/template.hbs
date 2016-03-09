@@ -4,7 +4,8 @@
             <a role="button" data-toggle="collapse" href="#{{panelId}}" aria-expanded="true" aria-controls="{{panelId}}">
                 {{header}}
             </a>
-            <button type="button" class="btn btn-xs btn-success pull-right" {{action "addItem" items}}>
+            <button type="button" id="{{panelId}}-btn" class="btn btn-xs btn-success pull-right md-button-hide"
+                {{action "addItem" items}}>
                 <span class="fa fa-plus"></span> Add
             </button>
         </h3>
