@@ -1,13 +1,7 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
-  /**
-   * [service description]
-   * @param  {[type]} 'codelist' [description]
-   * @return {[type]}            [description]
-   */
+export default Ember.Component.extend({
   mdCodes: Ember.inject.service('codelist'),
-
   phoneServices: Ember.computed(function() {
     let mdCodelist = this.get('mdCodes')
         .get('telephone')
@@ -19,15 +13,12 @@ export default Ember.Controller.extend({
     return serviceType;
   }),
 
-  panelId: Ember.computed(function () {
+  panelId: Ember.computed(function() {
     return Ember.generateGuid(null, 'panel');
   }),
 
-
-
   didInsertElement: function() {
-    console.log('+-- in didInsert');
-    let panel = this.get('panelId') + 'a';
+    let panel = this.get('panelId');
     let panelBtn = panel + '-btn';
     $('#' + panel).on('show.bs.collapse', function() {
       $('#' + panelBtn).removeClass('md-button-hide');
@@ -35,8 +26,20 @@ export default Ember.Controller.extend({
     $('#' + panel).on('hidden.bs.collapse', function() {
       $('#' + panelBtn).addClass('md-button-hide');
     });
+  },
+
+  actions: {
+    addPhone: function(phoneBook) {
+      phoneBook.pushObject(Ember.Object.create({
+        phoneName: "",
+        phoneNumber: "",
+        service: []
+      }));
+    },
+
+    deletePhone: function(phoneBook, idx) {
+      phoneBook.removeAt(idx);
+    }
   }
-
-
 
 });
