@@ -60,4 +60,5 @@ export default Ember.Component.extend({
     }
     return this.get('model.' + this.get('propertyArrayName'));
   })
+  
 });

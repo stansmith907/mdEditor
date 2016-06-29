@@ -2,14 +2,11 @@
 
     <div class="panel-heading">
         <h3 class="panel-title md-panel-chevron">
-            <a data-toggle="collapse" aria-expanded="false"
+            <a data-toggle="collapse" aria-expanded="false" class="collapsed"
                href="#{{panelId}}" aria-controls="#{{panelId}}">
                 <span class="fa"></span> Phones
+                <label class="label {{badgeColor}}"> {{recordCount}} </label>
             </a>
-            <button type="button" id="{{panelId}}-btn" class="btn btn-xs btn-success pull-right md-button-hide"
-                {{action "addPhone" phoneBook}}>
-                <span class="fa fa-plus"></span> Add
-            </button>
         </h3>
     </div>
 
@@ -36,8 +33,14 @@
                                 placeholder="Phone number"}}
                             </td>
                             <td>
-                                <div class="form-group">
-                                    {{multiselect-checkboxes options=phoneServices selection=phone.service}}
+                                <div class="md-multiselect form-control">
+                                    {{#multiselect-checkboxes tagName='div' options=phoneServices
+                                    selection=phone.service as |service isSelected|}}
+                                        <label class="checkbox-inline">
+                                            {{input type="checkbox" checked=isSelected}}
+                                            {{service}}
+                                        </label>
+                                    {{/multiselect-checkboxes}}
                                 </div>
                             </td>
                             <td>
@@ -47,6 +50,11 @@
                             </td>
                         </tr>
                     {{/each}}
+                    <hr>
+                    <button type="button" id="{{panelId}}-btn" class="btn btn-xs btn-success"
+                        {{action "addPhone" phoneBook}}>
+                        <span class="fa fa-plus"></span> Add Phone
+                    </button>
                 </tbody>
             </table>
         </div>

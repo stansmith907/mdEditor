@@ -34,16 +34,25 @@ export default Ember.Component.extend({
     return Ember.generateGuid(null, 'panel');
   }),
   
-  didInsertElement: function() {
-    let panel = this.get('panelId');
-    let panelBtn = panel + '-btn';
-    $('#' + panel).on('show.bs.collapse', function() {
-      $('#' + panelBtn).removeClass('md-button-hide');
-    });
-    $('#' + panel).on('hidden.bs.collapse', function() {
-      $('#' + panelBtn).addClass('md-button-hide');
-    });
-  },
+  recordCount: Ember.computed('phoneBook.[]', 'badgeColor', function() {
+    return this.get('phoneBook').length;;
+  }),
+    
+  badgeColor: Ember.computed('recordCount', function() {
+    var count = this.get('recordCount');
+    return (count > 0) ? 'label-info' : 'label-warning';
+  }),
+  
+// didInsertElement: function() {
+  //   let panel = this.get('panelId');
+  //   let panelBtn = panel + '-btn';
+  //   $('#' + panel).on('show.bs.collapse', function() {
+  //     $('#' + panelBtn).removeClass('md-button-hide');
+  //   });
+  //   $('#' + panel).on('hidden.bs.collapse', function() {
+  //     $('#' + panelBtn).addClass('md-button-hide');
+  //   });
+  // },
   
   actions: {
     addPhone: function(phoneBook) {

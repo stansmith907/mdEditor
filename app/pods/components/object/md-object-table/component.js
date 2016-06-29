@@ -65,6 +65,15 @@ const ObjectTable = Ember.Component.extend({
     this.$('table, .object-editor').toggleClass('fadeOut fadeIn');
   }),
   
+  recordCount: Ember.computed('citems.[]', 'badgeColor', function() {
+    return this.get('citems').length;;
+  }),
+  
+  badgeColor: Ember.computed('recordCount', function() {
+    var count = this.get('recordCount');
+    return (count > 0) ? 'label-info' : 'label-warning';
+  }),
+  
   didInsertElement: function() {
     let panel = this.get('panelId');
     let panelBtn = panel + '-btn';

@@ -34,3 +34,11 @@
     content: '\f107';
   }
 }
+
+.md-multiselect.form-control {
+  height: auto;
+
+  .checkbox-inline {
+    margin-left: 10px;
+  }
+}

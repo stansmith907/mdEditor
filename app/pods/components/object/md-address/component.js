@@ -19,6 +19,11 @@ export default Ember.Component.extend({
   
   panelId: Ember.computed(function() {
     return Ember.generateGuid(null, 'panel');
+  }),
+  
+  addressObj: Ember.computed('address', function() {
+    let address = this.get('address');
+    return (Object.keys(address).length === 0);
   })
   
 });
