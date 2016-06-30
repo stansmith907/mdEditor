@@ -35,10 +35,10 @@ export default Ember.Component.extend({
   }),
   
   recordCount: Ember.computed('phoneBook.[]', 'badgeColor', function() {
-    return this.get('phoneBook').length;;
+    return this.get('phoneBook').length;
   }),
     
-  badgeColor: Ember.computed('recordCount', function() {
+  pillColor: Ember.computed('recordCount', function() {
     var count = this.get('recordCount');
     return (count > 0) ? 'label-info' : 'label-warning';
   }),

@@ -66,10 +66,10 @@ const ObjectTable = Ember.Component.extend({
   }),
   
   recordCount: Ember.computed('citems.[]', 'badgeColor', function() {
-    return this.get('citems').length;;
+    return this.get('citems').length;
   }),
   
-  badgeColor: Ember.computed('recordCount', function() {
+  pillColor: Ember.computed('recordCount', function() {
     var count = this.get('recordCount');
     return (count > 0) ? 'label-info' : 'label-warning';
   }),
